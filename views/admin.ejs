@@ -1,0 +1,295 @@
+<%- include('partiarls/headAndHeader.ejs') %>
+
+<div class="panel">
+    <div class="panelBox">       
+            <nav class="panelNav">
+                <a class= "<%= title.includes('Admin') ? 'active2' : null %>"  href="/panel">Panel</a>
+                <a class= "<%= title.includes('Profesores') ? 'active2' : null %>"  href="/profesores">Profesores</a>
+                <a class= "<%= title.includes('Alumnos') ? 'active2' : null %>"  href="/alumnos">Alumnos</a>
+            </nav>  
+            <%  if(title == 'Admin') { %>
+                <div class="dos">
+                    <div class="uno">
+                        <a href="/profesores" class="card education">
+                            <div class="overlay"></div>
+                        <div class="circle">
+                        <img src="https://i.postimg.cc/LsmDJT1x/Dise-o-sin-t-tulo-9-unscreen.gif" alt="" width="90">
+                        </div>
+                        <p>Profesores: 15</p>
+                    </a>
+                       <a href="#" class="card credentialing">
+                            <div class="overlay"></div>
+                         <div class="circle">
+                            <img src="https://i.postimg.cc/HLWjNSRD/Dise-o-sin-t-tulo-11-unscreen.gif" alt="" width="80">
+                         </div>
+                         <p>Clases de Baile : 9</p>
+                       </a>
+                       <a href="/alumnos" class="card human-resources">
+                            <div class="overlay"></div>
+                         <div class="circle">
+                            <img src="https://i.postimg.cc/MpwRKGkw/Dise-o-sin-t-tulo-10-unscreen.gif" alt="" width="80">
+                       
+                         </div>
+                         <p>Alumnos : 50</p>
+                       </a>
+                    </div>
+                    <div class="calendar-wrapper">
+                        <button id="btnPrev"><img src="https://i.postimg.cc/nrBNm9BF/Dise-o-sin-t-tulo-12-unscreen.gif" alt="" width="20"></button>
+                            <button id="btnNext"><img src="https://i.postimg.cc/wjwJzWZz/Dise-o-sin-t-tulo-13-unscreen.gif" alt="" width="20"></button>
+                        <div id="divCal"></div>
+                      </div>
+                </div>
+                <%   } %>
+                <% if(title == 'Profesores'){ %>
+                    <div class="dos">
+                        <div class="cajita1">
+                            <h4>Lista de Profes:</h4>
+                            <div class="profe">
+                                <p>Nombre: Micaela Torre</p>
+                                <p>DNI: 37525076</p>
+                                <p>Contacto: micaatorre.19@gmail.com</p>
+                                <p>Dirección: Obispo Salguero 144</p>
+                                <p>Clase: Zumba</p>
+                            </div>
+                            <div class="profe">
+                                <p>Nombre: Micaela Torre</p>
+                                <p>DNI: 37525076</p>
+                                <p>Contacto: micaatorre.19@gmail.com</p>
+                                <p>Dirección: Obispo Salguero 144</p>
+                                <p>Clase: Zumba</p>
+                            </div>
+                            <div class="profe">
+                                <p>Nombre: Micaela Torre</p>
+                                <p>DNI: 37525076</p>
+                                <p>Contacto: micaatorre.19@gmail.com</p>
+                                <p>Dirección: Obispo Salguero 144</p>
+                                <p>Clase: Zumba</p>
+                            </div>
+                        </div>
+                        <form class="login-form" action="javascript:void(0);">
+                            <h3>Agregar Profesor</h3>
+                            <div class="form-input-material">
+                                <label for="username">Nombre</label>
+                                <input type="text" name="username" id="username" placeholder=" " autocomplete="off" class="form-control-material" required />
+                            </div>
+                            <div class="form-input-material">
+                                <label for="password">DNI</label>
+                                <input type="number" name="password" id="password" placeholder=" " autocomplete="off" class="form-control-material" required />
+                            </div>
+                            <div class="form-input-material">
+                                <label for="password">Dirección</label>
+                                <input type="text" name="password" id="password" placeholder=" " autocomplete="off" class="form-control-material" required />
+                            </div>
+                            <div class="form-input-material">
+                                <label for="password">Contacto</label>
+                                <input type="text" name="password" id="password" placeholder=" " autocomplete="off" class="form-control-material" required />
+                            </div> 
+                            <div class="form-input-material">
+                                <label for="select">Clase</label>
+                                <select name="" id="" required>
+                                    <option value="Clase" selected>Elige una opción</option>
+                                    <option value="Salsa" >Salsa</option>
+                                    <option value="Bachata" >Bachata</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-ghost">Enviar</button>
+                        </form>
+                    </div>
+               <% } %>
+               <% if(title == 'Alumnos'){ %>
+                <div class="dos">
+                    <form class="login-form" action="javascript:void(0);">
+                        <h3>Agregar Alumno</h3>
+                        <div class="form-input-material">
+                            <label for="username">Nombre</label>
+                            <input type="text" name="username" id="username" placeholder=" " autocomplete="off" class="form-control-material" required />
+                        </div>
+                        <div class="form-input-material">
+                            <label for="password">DNI</label>
+                            <input type="number" name="password" id="password" placeholder=" " autocomplete="off" class="form-control-material" required />
+                        </div>
+                        <div class="form-input-material">
+                            <label for="password">Dirección</label>
+                            <input type="text" name="password" id="password" placeholder=" " autocomplete="off" class="form-control-material" required />
+                        </div>
+                        <div class="form-input-material">
+                            <label for="password">Contacto</label>
+                            <input type="text" name="password" id="password" placeholder=" " autocomplete="off" class="form-control-material" required />
+                        </div> 
+                        <div class="form-input-material">
+                            <label for="select">Clase</label>
+                            <select name="" id="" required>
+                                <option value="Clase" selected>Elige una opción</option>
+                                <option value="Salsa" >Salsa</option>
+                                <option value="Bachata" >Bachata</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-ghost">Enviar</button>
+                    </form>
+                    <div class="cajita1">
+                        <h4>Lista de Alumnos:</h4>
+                        <div class="profe">
+                            <p>Nombre: Micaela Torre</p>
+                            <p>DNI: 37525076</p>
+                            <p>Contacto: micaatorre.19@gmail.com</p>
+                            <p>Dirección: Obispo Salguero 144</p>
+                            <p>Clase: Zumba</p>
+                        </div>
+                        <div class="profe">
+                            <p>Nombre: Micaela Torre</p>
+                            <p>DNI: 37525076</p>
+                            <p>Contacto: micaatorre.19@gmail.com</p>
+                            <p>Dirección: Obispo Salguero 144</p>
+                            <p>Clase: Zumba</p>
+                        </div>
+                        <div class="profe">
+                            <p>Nombre: Micaela Torre</p>
+                            <p>DNI: 37525076</p>
+                            <p>Contacto: micaatorre.19@gmail.com</p>
+                            <p>Dirección: Obispo Salguero 144</p>
+                            <p>Clase: Zumba</p>
+                        </div>
+                    </div>
+                </div>
+           <% } %>
+    </div>
+</div>
+<script>
+    var Cal = function(divId) {
+this.divId = divId;
+this.DaysOfWeek = [
+  'Dom',
+  'Lun',
+  'Mar',
+  'Mie',
+  'Jue',
+  'Vie',
+  'Sab'
+];
+
+this.Months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Dicembre' ];
+var d = new Date();
+
+this.currMonth = d.getMonth();
+this.currYear = d.getFullYear();
+this.currDay = d.getDate();
+
+};
+
+// Goes to next month
+Cal.prototype.nextMonth = function() {
+if ( this.currMonth == 11 ) {
+  this.currMonth = 0;
+  this.currYear = this.currYear + 1;
+}
+else {
+  this.currMonth = this.currMonth + 1;
+}
+this.showcurr();
+};
+
+Cal.prototype.previousMonth = function() {
+if ( this.currMonth == 0 ) {
+  this.currMonth = 11;
+  this.currYear = this.currYear - 1;
+}
+else {
+  this.currMonth = this.currMonth - 1;
+}
+this.showcurr();
+};
+
+Cal.prototype.showcurr = function() {
+this.showMonth(this.currYear, this.currMonth);
+};
+
+Cal.prototype.showMonth = function(y, m) {
+var d = new Date()
+, firstDayOfMonth = new Date(y, m, 1).getDay()
+, lastDateOfMonth =  new Date(y, m+1, 0).getDate()
+
+, lastDayOfLastMonth = m == 0 ? new Date(y-1, 11, 0).getDate() : new Date(y, m, 0).getDate();
+
+
+var html = '<table>';
+
+html += '<thead><tr>';
+html += '<td colspan="7">' + this.Months[m] + ' ' + y + '</td>';
+html += '</tr></thead>';
+
+
+
+html += '<tr class="days">';
+for(var i=0; i < this.DaysOfWeek.length;i++) {
+  html += '<td>' + this.DaysOfWeek[i] + '</td>';
+}
+html += '</tr>';
+
+
+var i=1;
+do {
+
+  var dow = new Date(y, m, i).getDay();
+
+
+  if ( dow == 0 ) {
+    html += '<tr>';
+  }
+
+  else if ( i == 1 ) {
+    html += '<tr>';
+    var k = lastDayOfLastMonth - firstDayOfMonth+1;
+    for(var j=0; j < firstDayOfMonth; j++) {
+      html += '<td class="not-current">' + k + '</td>';
+      k++;
+    }
+  }
+
+
+  var chk = new Date();
+  var chkY = chk.getFullYear();
+  var chkM = chk.getMonth();
+  if (chkY == this.currYear && chkM == this.currMonth && i == this.currDay) {
+    html += '<td class="today">' + i + '</td>';
+  } else {
+    html += '<td class="normal">' + i + '</td>';
+  }
+
+  if ( dow == 6 ) {
+    html += '</tr>';
+  }
+
+  else if ( i == lastDateOfMonth ) {
+    var k=1;
+    for(dow; dow < 6; dow++) {
+      html += '<td class="not-current">' + k + '</td>';
+      k++;
+    }
+  }
+
+  i++;
+}while(i <= lastDateOfMonth);
+
+
+html += '</table>';
+
+document.getElementById(this.divId).innerHTML = html;
+};
+
+
+window.onload = function() {
+var c = new Cal("divCal");			
+c.showcurr();
+
+getId('btnNext').onclick = function() {
+  c.nextMonth();
+};
+getId('btnPrev').onclick = function() {
+  c.previousMonth();
+};
+}
+
+function getId(id) {
+return document.getElementById(id);
+}
+</script>
