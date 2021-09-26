@@ -67,9 +67,12 @@ div.descripcion {
     color: white;
 }
 
-div.descripcion h2 {
+div.descripcion h2,
+h2.galeria {
     font-size: 2vw;
     margin-bottom: 1rem;
+    color: white;
+    text-align: center;
 }
 
 div.foto1 {
@@ -130,7 +133,7 @@ div.redes svg {
 }
 
 .gallery-item:hover .image img {
-    transform: scale(1.5);
+    transform: scale(1.2);
 }
 
 
@@ -182,29 +185,7 @@ div.redes svg {
     grid-row: span 6;
 }
 
-@media screen and (max-width:500px) {
-    .container {
-        grid-template-columns: repeat(1, 1fr);
-    }
 
-    .w-1,
-    .w-2,
-    .w-3,
-    .w-4,
-    .w-5,
-    .w-6 {
-        grid-column: span 1;
-    }
-
-    .h-1,
-    .h-2,
-    .h-3,
-    .h-4,
-    .h-5,
-    .h-6 {
-        grid-row: span 3;
-    }
-}
 
 
 
@@ -253,21 +234,16 @@ div.redes svg {
 .cards {
     width: 100%;
     display: flex;
-    display: -webkit-flex;
+    flex-wrap: wrap;
     justify-content: center;
-    -webkit-justify-content: center;
-    max-width: 820px;
+    gap: 2rem;
 }
 
 .card--1 .card__img,
 .card--1 .card__img--hover {
-    background-image: url(https://i.postimg.cc/GpFmWc25/zumba-default.jpg);
+    background-image: url(https://i.postimg.cc/J0ncmSMV/MO-removebg-preview.png);
 }
 
-.card--2 .card__img,
-.card--2 .card__img--hover {
-    background-image: url(https://i.postimg.cc/xjwT1Jz4/tipos-de-baile-hip-hop-break-1024x683.jpg);
-}
 
 .card__like {
     width: 18px;
@@ -325,10 +301,9 @@ div.redes svg {
 }
 
 .card {
-    margin-right: 25px;
     transition: all .4s cubic-bezier(0.175, 0.885, 0, 1);
     background-color: #fff;
-    width: 33.3%;
+    width: 30%;
     position: relative;
     border-radius: 12px;
     overflow: hidden;
@@ -408,6 +383,7 @@ div.panelBox {
     min-height: 85vh;
     background-color: rgb(247 248 250 / 25%);
     border-radius: 40px;
+    padding: 1rem;
 }
 
 nav.panelNav {

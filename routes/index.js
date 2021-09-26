@@ -41,4 +41,7 @@ router
 router
 .route('/borrar-alumno/:id')
 .get(moveControllers.borraAlumno)
+router
+.route('/editar-alumno/:id')
+.get(moveControllers.alumnos)
 module.exports = router

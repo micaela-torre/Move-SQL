@@ -6,7 +6,7 @@
                 <a class= "<%= title.includes('Admin') ? 'active2' : null %>"  href="/panel">Panel</a>
                 <a class= "<%= title.includes('Profesores') ? 'active2' : null %>"  href="/profesores">Profesores</a>
                 <a class= "<%= title.includes('Alumnos') ? 'active2' : null %>"  href="/alumnos">Alumnos</a>
-                <a class= "<%= title.includes('Clases-Panel') ? 'active2' : null %>"  href="/panel-clases">Clases</a>
+                <a class= "<%= title.includes('Panel') ? 'active2' : null %>"  href="/panel-clases">Clases</a>
             </nav>  
             <%  if(title == 'Admin') { %>
                 <div class="dos">
@@ -71,15 +71,15 @@
                             </div>
                             <div class="form-input-material">
                                 <label for="dni">DNI</label>
-                                <input type="number" name="dni" autocomplete="off" class="form-control-material" value="<%= editarDatos ? editarDatos.dni : '' %>" required />
+                                <input type="number" name="dni" class="form-control-material" value="<%= editarDatos ? editarDatos.dni : '' %>" required />
                             </div>
                             <div class="form-input-material">
                                 <label for="direccion">Dirección</label>
-                                <input type="text" name="direccion" autocomplete="off" class="form-control-material" value="<%= editarDatos ? editarDatos.direccion : '' %>" required />
+                                <input type="text" name="direccion"  class="form-control-material" value="<%= editarDatos ? editarDatos.direccion : '' %>" required />
                             </div>
                             <div class="form-input-material">
                                 <label for="contacto">Contacto</label>
-                                <input type="text" name="contacto"  autocomplete="off" class="form-control-material" value="<%= editarDatos ? editarDatos.contacto : '' %>" required />
+                                <input type="text" name="contacto" class="form-control-material" value="<%= editarDatos ? editarDatos.contacto : '' %>" required />
                             </div> 
                             <div class="form-input-material">
                                 <label for="select">Clase</label>
@@ -136,7 +136,7 @@
                               <p>Dirección: <%=alu.direccion %></p>
                               <p>Profesor: <%=alu['profesore.nombre']%></p>
                               <div class="editarBorrar">
-                                <a href=""><img
+                                <a href="/editar-alumno/<%=alu.id%>"><img
                                   src="https://i.postimg.cc/PxZ58k8v/Dise-o-sin-t-tulo-33.png"
                                   alt="flecha" width="25"></a>
                           <a href="/borrar-alumno/<%= alu.id %>"><img

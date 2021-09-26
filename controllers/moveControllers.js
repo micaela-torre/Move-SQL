@@ -7,9 +7,11 @@ const moveControllers = {
             title: "Inicio"
         })
     },
-    clases: (req, res) => {
+    clases: async (req, res) => {
+        let profesor = await Profesor.findAll({raw : true, include:["clase"]})
         res.render("clases", {
-            title: "Clases"
+            title: "Clases",
+            profesor
         })
     },
     galeria: (req, res) => {
@@ -18,6 +20,7 @@ const moveControllers = {
         })
     },
     panel: async(req, res) => {
+       try{
         let profesor = await Profesor.findAll({raw : true, include:["clase"]})
         let alumno = await Alumno.findAll({raw : true})
         let clases = await Clase.findAll({raw:true})
@@ -27,6 +30,9 @@ const moveControllers = {
             alumno,
             clases
         })
+       }catch(e){
+           console.log(e)
+       }
     },
     panelAdmin: async(req, res) => {
         let profesor = await Profesor.findAll({raw : true, include:["clase"]})
@@ -49,9 +55,10 @@ const moveControllers = {
         })
     },
     profesores: async(req, res) => {
+        try{
         let profesor = await Profesor.findAll({raw : true, include:["clase"]})
         let clases = await Clase.findAll({raw:true})
-        let editarDatos= null
+        let editarDatos= null;
         if(req.params.id){
             editarDatos = await Profesor.findByPk(req.params.id)
         }
@@ -61,6 +68,9 @@ const moveControllers = {
             editarDatos,
             clases
         })
+        }catch(e){
+            console.log(e)
+        }
     },
     alumnos: async(req, res) => {
         let alumno = await Alumno.findAll({raw : true, include:["profesore"] })
@@ -77,32 +87,37 @@ const moveControllers = {
         })
     },
     cargarProfe: async (req,res)=> {
-            try {                 
-                const {nombre,contacto,direccion,dni,clase} = req.body
-                await Profesor.create({
-                    nombre,
-                    contacto,
-                    direccion,
-                    dni,
-                    claseId: clase
-                });
-                // if (!req.body.id) {
-                // } else {
-                // let editarDatos = await Profesor.findByPk(req.body.id);
-                //     editarDatos.nombre =  req.body.nombre,
-                //     editarDatos.contacto = req.body.contacto, 
-                //     editarDatos.direccion = req.body.direccion,
-                //     editarDatos.dni = req.body.dni, 
-                // await editarDatos.save();
-                // }
+        console.log(req.body.id == ' ')
+        console.log(!req.body.id == '')
+            try {                  
+                if(!req.body.dni == ' ') {
+                    let editarDatos = await Profesor.findByPk(req.body.id);
+                        editarDatos.nombre =  req.body.nombre,
+                        editarDatos.contacto = req.body.contacto, 
+                        editarDatos.direccion = req.body.direccion,
+                        editarDatos.dni = req.body.dni, 
+                    await editarDatos.save();
+                } else {
+                    const {nombre,contacto,direccion,dni,clase} = req.body
+                    await Profesor.create({
+                        nombre,
+                        contacto,
+                        direccion,
+                        dni,
+                        claseId: clase
+                    });
+                  
+                }
+               
+                
                 res.redirect('/profesores')
             } catch (e) {
                 console.log(e);
             }
         },
     cargarAlumno: async (req,res)=> {
-        console.log(req.body)
     try{
+        if(!req.body.dni){
         const {nombre, direccion,contacto,dni, profesor} = req.body
         await Alumno.create({
             nombre,
@@ -111,22 +126,20 @@ const moveControllers = {
             dni,
             profesoreId : profesor
         })
+        }
+        else {
+            let editarDatos = await Alumno.findByPk(req.body.id)
+            editarDatos.nombre = req.body.nombre
+            editarDatos.contacto = req.body.contacto
+            editarDatos.direccion = req.body.direccion
+            editarDatos.dni = req.body.dni
+            await editarDatos.save()
+        }
         res.redirect('/alumnos')
     }
     catch(e){
         console.log(e)
     }
-        // if(!req.body.id){
-
-        // }
-        // else {
-        //     let editarDatos = await Alumno.findByPk(req.body.id)
-        //     editarDatos.nombre = req.body.nombre
-        //     editarDatos.contacto = req.body.contacto
-        //     editarDatos.direccion = req.body.direccion
-        //     editarDatos.dni = req.body.dni
-        //     await editarDatos.save()
-        // }
         
     },
     borrar: async (req, res) => {

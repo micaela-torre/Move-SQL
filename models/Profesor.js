@@ -1,23 +1,23 @@
-const Sequelize = require('sequelize')
+const sequelize = require('sequelize')
 const db = require('../config/db')
 const Profesor = db.define('profesore', {
     id: {
-        type: Sequelize.INTEGER,
+        type: sequelize.INTEGER,
         autoIncrement: true,
         allowNull: false,
         primaryKey: true ,
     },
     nombre: {
-        type: Sequelize.STRING,
+        type: sequelize.STRING,
     },
     contacto: {
-        type: Sequelize.STRING,
+        type: sequelize.STRING,
     },
     direccion: {
-        type: Sequelize.STRING,
+        type: sequelize.STRING,
     },
     dni: {
-        type: Sequelize.STRING,
+        type: sequelize.STRING,
     },
     
 })
