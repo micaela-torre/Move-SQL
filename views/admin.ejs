@@ -6,31 +6,32 @@
                 <a class= "<%= title.includes('Admin') ? 'active2' : null %>"  href="/panel">Panel</a>
                 <a class= "<%= title.includes('Profesores') ? 'active2' : null %>"  href="/profesores">Profesores</a>
                 <a class= "<%= title.includes('Alumnos') ? 'active2' : null %>"  href="/alumnos">Alumnos</a>
+                <a class= "<%= title.includes('Clases-Panel') ? 'active2' : null %>"  href="/panel-clases">Clases</a>
             </nav>  
             <%  if(title == 'Admin') { %>
                 <div class="dos">
                     <div class="uno">
-                        <a href="/profesores" class="card education">
+                        <a href="/profesores" class="card1 education">
                             <div class="overlay"></div>
                         <div class="circle">
                         <img src="https://i.postimg.cc/LsmDJT1x/Dise-o-sin-t-tulo-9-unscreen.gif" alt="" width="90">
                         </div>
-                        <p>Profesores: 15</p>
+                        <p>Profesores: <%=profesor.length %></p>
                     </a>
-                       <a href="#" class="card credentialing">
+                       <a href="/panel-clases" class="card1 credentialing">
                             <div class="overlay"></div>
                          <div class="circle">
                             <img src="https://i.postimg.cc/HLWjNSRD/Dise-o-sin-t-tulo-11-unscreen.gif" alt="" width="80">
                          </div>
-                         <p>Clases de Baile : 9</p>
+                         <p>Clases de Baile : <%=clases.length %></p>
                        </a>
-                       <a href="/alumnos" class="card human-resources">
+                       <a href="/alumnos" class="card1 human-resources">
                             <div class="overlay"></div>
                          <div class="circle">
                             <img src="https://i.postimg.cc/MpwRKGkw/Dise-o-sin-t-tulo-10-unscreen.gif" alt="" width="80">
                        
                          </div>
-                         <p>Alumnos : 50</p>
+                         <p>Alumnos :<%=alumno.length %></p>
                        </a>
                     </div>
                     <div class="calendar-wrapper">
@@ -44,114 +45,129 @@
                     <div class="dos">
                         <div class="cajita1">
                             <h4>Lista de Profes:</h4>
-                            <div class="profe">
-                                <p>Nombre: Micaela Torre</p>
-                                <p>DNI: 37525076</p>
-                                <p>Contacto: micaatorre.19@gmail.com</p>
-                                <p>Dirección: Obispo Salguero 144</p>
-                                <p>Clase: Zumba</p>
-                            </div>
-                            <div class="profe">
-                                <p>Nombre: Micaela Torre</p>
-                                <p>DNI: 37525076</p>
-                                <p>Contacto: micaatorre.19@gmail.com</p>
-                                <p>Dirección: Obispo Salguero 144</p>
-                                <p>Clase: Zumba</p>
-                            </div>
-                            <div class="profe">
-                                <p>Nombre: Micaela Torre</p>
-                                <p>DNI: 37525076</p>
-                                <p>Contacto: micaatorre.19@gmail.com</p>
-                                <p>Dirección: Obispo Salguero 144</p>
-                                <p>Clase: Zumba</p>
-                            </div>
+                            <% profesor.map(profe=> { %>
+                              <div class="profe">
+                                <p>Nombre: <%=profe.nombre %></p>
+                                  <p>DNI: <%=profe.dni %></p>
+                                  <p>Contacto: <%=profe.contacto %></p>
+                                  <p>Dirección: <%=profe.direccion %></p>
+                                  <p>Clase: <%=profe['clase.nombre']%></p>
+                                  <div class="editarBorrar">
+                                    <a href="/editar/<%= profe.id %>"><img
+                                      src="https://i.postimg.cc/PxZ58k8v/Dise-o-sin-t-tulo-33.png"
+                                      alt="flecha" width="25"></a>
+                              <a href="/borrar/<%= profe.id %>"><img
+                                      src="https://i.postimg.cc/jjK89hZm/Dise-o-sin-t-tulo-1.gif" alt="flecha" width="25">
+                              </a>
+                                  </div>
+                              </div>
+                            <% }) %>
                         </div>
-                        <form class="login-form" action="javascript:void(0);">
-                            <h3>Agregar Profesor</h3>
+                        <form action ="/agregar-profesor" method="POST" class="login-form">
+                            <h3><%= editarDatos ? 'Editar Datos del Profesor' : 'Agregar Profesor '%></h3>
                             <div class="form-input-material">
-                                <label for="username">Nombre</label>
-                                <input type="text" name="username" id="username" placeholder=" " autocomplete="off" class="form-control-material" required />
+                                <label for="nombre">Nombre</label>
+                                <input type="text" name="nombre" autocomplete="off" class="form-control-material" value="<%= editarDatos ? editarDatos.nombre : '' %>" required />
                             </div>
                             <div class="form-input-material">
-                                <label for="password">DNI</label>
-                                <input type="number" name="password" id="password" placeholder=" " autocomplete="off" class="form-control-material" required />
+                                <label for="dni">DNI</label>
+                                <input type="number" name="dni" autocomplete="off" class="form-control-material" value="<%= editarDatos ? editarDatos.dni : '' %>" required />
                             </div>
                             <div class="form-input-material">
-                                <label for="password">Dirección</label>
-                                <input type="text" name="password" id="password" placeholder=" " autocomplete="off" class="form-control-material" required />
+                                <label for="direccion">Dirección</label>
+                                <input type="text" name="direccion" autocomplete="off" class="form-control-material" value="<%= editarDatos ? editarDatos.direccion : '' %>" required />
                             </div>
                             <div class="form-input-material">
-                                <label for="password">Contacto</label>
-                                <input type="text" name="password" id="password" placeholder=" " autocomplete="off" class="form-control-material" required />
+                                <label for="contacto">Contacto</label>
+                                <input type="text" name="contacto"  autocomplete="off" class="form-control-material" value="<%= editarDatos ? editarDatos.contacto : '' %>" required />
                             </div> 
                             <div class="form-input-material">
                                 <label for="select">Clase</label>
-                                <select name="" id="" required>
-                                    <option value="Clase" selected>Elige una opción</option>
-                                    <option value="Salsa" >Salsa</option>
-                                    <option value="Bachata" >Bachata</option>
+                                <select name="clase" >
+                                    <% clases.map(clase =>{ %>
+                                      <option value='<%=clase.id %>' ><%=clase.nombre %></option>
+                                  <% }) %>
+                                    
                                 </select>
                             </div>
+                            <input type="hidden" name="id" value="<%= editarDatos ? editarDatos.id : '' %> ">
                             <button type="submit" class="btn btn-primary btn-ghost">Enviar</button>
                         </form>
                     </div>
-               <% } %>
-               <% if(title == 'Alumnos'){ %>
+                <% } %>
+                <% if(title == 'Alumnos'){ %>
                 <div class="dos">
-                    <form class="login-form" action="javascript:void(0);">
-                        <h3>Agregar Alumno</h3>
+                    <form action="/agregar-alumno" method="POST" class="login-form">
+                      <h3><%= editarDatos ? 'Editar Datos del Alumno' : 'Agregar Alumno '%></h3>
                         <div class="form-input-material">
-                            <label for="username">Nombre</label>
-                            <input type="text" name="username" id="username" placeholder=" " autocomplete="off" class="form-control-material" required />
+                          <label for="nombre">Nombre</label>
+                          <input type="text" name="nombre" autocomplete="off" class="form-control-material" value="<%= editarDatos ? editarDatos.nombre : '' %>" required />
+                      </div>
+                      <div class="form-input-material">
+                          <label for="dni">DNI</label>
+                          <input type="number" name="dni" autocomplete="off" class="form-control-material" value="<%= editarDatos ? editarDatos.dni : '' %>" required />
+                      </div>
+                      <div class="form-input-material">
+                          <label for="direccion">Dirección</label>
+                          <input type="text" name="direccion" autocomplete="off" class="form-control-material" value="<%= editarDatos ? editarDatos.direccion : '' %>" required />
+                      </div>
+                      <div class="form-input-material">
+                          <label for="contacto">Contacto</label>
+                          <input type="text" name="contacto"  autocomplete="off" class="form-control-material" value="<%= editarDatos ? editarDatos.contacto : '' %>" required />
+                      </div> 
+                        <div class="form-input-material">
+                          <label for="select">Clase</label>
+                          <select name="profesor" required>
+                              <% profesor.map(profe =>{ %>
+                                <option value='<%=profe.id %>' ><%=profe.nombre %></option>
+                            <% }) %>
+                          </select>
                         </div>
-                        <div class="form-input-material">
-                            <label for="password">DNI</label>
-                            <input type="number" name="password" id="password" placeholder=" " autocomplete="off" class="form-control-material" required />
-                        </div>
-                        <div class="form-input-material">
-                            <label for="password">Dirección</label>
-                            <input type="text" name="password" id="password" placeholder=" " autocomplete="off" class="form-control-material" required />
-                        </div>
-                        <div class="form-input-material">
-                            <label for="password">Contacto</label>
-                            <input type="text" name="password" id="password" placeholder=" " autocomplete="off" class="form-control-material" required />
-                        </div> 
-                        <div class="form-input-material">
-                            <label for="select">Clase</label>
-                            <select name="" id="" required>
-                                <option value="Clase" selected>Elige una opción</option>
-                                <option value="Salsa" >Salsa</option>
-                                <option value="Bachata" >Bachata</option>
-                            </select>
-                        </div>
+                        <input type="hidden" name="id" value="<%= editarDatos ? editarDatos.id : '' %>">
                         <button type="submit" class="btn btn-primary btn-ghost">Enviar</button>
                     </form>
                     <div class="cajita1">
                         <h4>Lista de Alumnos:</h4>
-                        <div class="profe">
-                            <p>Nombre: Micaela Torre</p>
-                            <p>DNI: 37525076</p>
-                            <p>Contacto: micaatorre.19@gmail.com</p>
-                            <p>Dirección: Obispo Salguero 144</p>
-                            <p>Clase: Zumba</p>
-                        </div>
-                        <div class="profe">
-                            <p>Nombre: Micaela Torre</p>
-                            <p>DNI: 37525076</p>
-                            <p>Contacto: micaatorre.19@gmail.com</p>
-                            <p>Dirección: Obispo Salguero 144</p>
-                            <p>Clase: Zumba</p>
-                        </div>
-                        <div class="profe">
-                            <p>Nombre: Micaela Torre</p>
-                            <p>DNI: 37525076</p>
-                            <p>Contacto: micaatorre.19@gmail.com</p>
-                            <p>Dirección: Obispo Salguero 144</p>
-                            <p>Clase: Zumba</p>
-                        </div>
+                        <% alumno.map(alu=> { %>
+                          <div class="profe">
+                            <p>Nombre: <%=alu.nombre %></p>
+                              <p>DNI: <%=alu.dni %></p>
+                              <p>Contacto: <%=alu.contacto %></p>
+                              <p>Dirección: <%=alu.direccion %></p>
+                              <p>Profesor: <%=alu['profesore.nombre']%></p>
+                              <div class="editarBorrar">
+                                <a href=""><img
+                                  src="https://i.postimg.cc/PxZ58k8v/Dise-o-sin-t-tulo-33.png"
+                                  alt="flecha" width="25"></a>
+                          <a href="/borrar-alumno/<%= alu.id %>"><img
+                                  src="https://i.postimg.cc/jjK89hZm/Dise-o-sin-t-tulo-1.gif" alt="flecha" width="25">
+                          </a>
+                              </div>
+                          </div>
+                        <% }) %>
                     </div>
-                </div>
-           <% } %>
+              <% } %>
+              <% if(title == 'Clases-Panel'){ %>
+                <div class="cuatro">
+                  <% profesor.map(profe => { %>
+                    <a class="card1 education">
+                      <div class="tres">
+                          <p>Clase: <%=profe['clase.nombre'] %></p>
+                          <p>Profe: <%=profe.nombre %></p>
+                          <ul>Alumnos: 
+                            <% alumno.map(alu => { %>
+                              <% if(profe.nombre == alu['profesore.nombre']){ %>
+                                  <li><%=alu.nombre %></li>
+                              <% } %>
+                          <% }) %>
+                          </ul>
+                      </div>
+                      <img src="https://i.postimg.cc/J0ncmSMV/MO-removebg-preview.png" alt="" width="100">
+                  </a>
+                
+                <%   }) %>
+              <% } %>
+            </div>
     </div>
 </div>
 <script>
